@@ -1,0 +1,16 @@
+
+service: aws-qiita-backup
+provider:
+  name: aws
+  runtime: python3.6
+  region: us-east-1
+  stage: ${opt:stage, self:custom.defaultStage}
+  environment:
+    QIITA_BASE_URL: https://qiita.com/api/v2/users/{user_id}/items?page={page}&per_page=100
+custom:
+  defaultStage: dev
+
+functions:
+  run:
+    handler: handler.run
+      
