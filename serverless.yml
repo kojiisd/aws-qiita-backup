@@ -9,8 +9,15 @@ provider:
     QIITA_BASE_URL: https://qiita.com/api/v2/users/{user_id}/items?page={page}&per_page=100
 custom:
   defaultStage: dev
+  otherfile:
+    environment:
+      dev: ${file(./conf/dev.yml)}
+      prd: ${file(./conf/prd.yml)}
 
 functions:
   run:
     handler: handler.run
+    environment:
+      S3_BUCKET: ${self:custom.otherfile.environment.${self:provider.stage}.S3_BUCKET}
+      FILE_NAME: ${self:custom.otherfile.environment.${self:provider.stage}.FILE_NAME}
       
