@@ -19,5 +19,5 @@ functions:
     handler: handler.run
     environment:
       S3_BUCKET: ${self:custom.otherfile.environment.${self:provider.stage}.S3_BUCKET}
-      FILE_NAME: ${self:custom.otherfile.environment.${self:provider.stage}.FILE_NAME}
-      
+      BACKUP_FILE_NAME: ${self:custom.otherfile.environment.${self:provider.stage}.BACKUP_FILE_NAME}
+      SETTING_FILE_NAME: ${self:custom.otherfile.environment.${self:provider.stage}.SETTING_FILE_NAME}      
