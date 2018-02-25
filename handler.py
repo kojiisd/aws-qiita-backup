@@ -64,6 +64,7 @@ def is_same_topics(org_topics_array, target_array):
 
 def get_topics():
     json_file = SETTING_FILE_NAME + ".json"
+    response_data = []
 
     try:
         response = s3_client.get_object(Bucket=S3_BUCKET, Key=json_file)
@@ -71,9 +72,7 @@ def get_topics():
     except botocore.exceptions.ClientError as ex:
         if ex.response['Error']['Code'] == 'NoSuchKey':
             print("No Objects.")
-            response_data = []
     
-
     return response_data
 
 def extract_keys_as_array(target_json_array, key):
